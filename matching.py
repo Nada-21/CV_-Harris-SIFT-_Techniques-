@@ -4,11 +4,14 @@ from utils import gaussian2, maxinterp, circle_points
 from skimage.transform import ProjectiveTransform, SimilarityTransform, AffineTransform
 from skimage.measure import ransac
 from scipy.ndimage.interpolation import map_coordinates
-from harris import harris
+from harris import*
+import time 
 
 #...........................Sum of Squared Differences..........................................................
 def match_SSD (I1,I2):
 
+  start = time.time()
+  
   x1, y1, cimg1 = harris(I1)
   x2, y2, cimg2 = harris(I2)
 
@@ -98,10 +101,15 @@ def match_SSD (I1,I2):
   n_correct = len(pdiff[pdiff<rthrs])
   # print("{} correct matches.".format(n_correct))
 
-  return fig, n_correct
+  # Ouput the execution time
+  exe_time = str(time.time() - start)
+
+  return fig, n_correct, exe_time
 
 #....................................Normalized Cross Correlation...........................................................
 def NCC (I1,I2):
+
+  start = time.time()
 
   # Harris corner extraction
   x1, y1, cimg1 = harris(I1)
@@ -195,11 +203,12 @@ def NCC (I1,I2):
 
   # The criterion for the match being a correct is that its correspondence in
   # the second image should be at most rthrs=2 pixels away from the transformed
-  # location
   n_correct = len(pdiff[pdiff<rthrs])
-  # print("{} Correct Matches.".format(n_correct))
 
-  return fig, n_correct
+  # Ouput the execution time
+  exe_time = str(time.time() - start)
+
+  return fig, n_correct, exe_time
 
 
   
