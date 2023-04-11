@@ -54,8 +54,6 @@ def find_harris_corners(input_img,k = 0.04, window_size = 5,threshold = 10000.00
     return corner_list, output_img 
 
 
-
-
 def harris(im, sigma=1.0, relTh=0.0001, k=0.04):
     im = im.astype(np.float) # Make sure im is float
     
@@ -63,13 +61,10 @@ def harris(im, sigma=1.0, relTh=0.0001, k=0.04):
     g, _, _, _, _, _, = gaussian2(sigma)
     _, gx, gy, _, _, _, = gaussian2(np.sqrt(0.5))
     
-    
     # Partial derivatives
     Ix = conv2(im, -gx, mode='constant')
     Iy = conv2(im, -gy, mode='constant')
 
-
-    
     # Components of the second moment matrix
     Ix2Sm = conv2(Ix**2, g, mode='constant')
     Iy2Sm = conv2(Iy**2, g, mode='constant')
