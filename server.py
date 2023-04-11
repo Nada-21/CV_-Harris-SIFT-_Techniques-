@@ -37,10 +37,12 @@ with tab1:
         gray_image = cv2.cvtColor(input_img, cv2.COLOR_BGR2GRAY)
         sized_img = cv2.resize(input_img,(400,400))
         col1.image(sized_img)
+        
         if select=="Harris":
             corner_list, corner_img = find_harris_corners(gray_image, k,window_size,threshold)
             output_image = cv2.resize(corner_img,(400,400))
             col2.image(output_image)
+        
         if select=="SIFT":
             KeyPoints,descriptors= computeKeypointsAndDescriptors(gray_image,num_of_octaves,Sigma)  
             # draw keypoints in image
@@ -51,29 +53,32 @@ with tab1:
 with tab2:
     uploadimg,result = st.columns(2)
     select = result.selectbox("Select",('SSD','NCC'))
+    
     img1 = uploadimg.file_uploader("upload Image1", type = {"png","jpg","jfif", "jpeg"})
     if img1 is not None:
         file_path = 'Images/'  +str(img1.name)
         input_img1 = cv2.imread(file_path)
         gray_image1 = cv2.cvtColor(input_img1, cv2.COLOR_BGR2GRAY)
-        sized_img1 = cv2.resize(input_img1,(400,400))
+        sized_img1 = cv2.resize(gray_image1,(400,350))
     
     img2 = uploadimg.file_uploader("upload Image2", type = {"png","jpg","jfif", "jpeg"})
     if img2 is not None:
         file_path = 'Images/'  +str(img2.name)
         input_img2 = cv2.imread(file_path)
         gray_image2 = cv2.cvtColor(input_img2, cv2.COLOR_BGR2GRAY)
-        sized_img2 = cv2.resize(input_img2,(400,400))
+        sized_img2 = cv2.resize(gray_image2,(400,350))
         
         if select == "SSD" :
-            SSD_figure, n_correct = match_SSD (gray_image1,gray_image2)
+            SSD_figure, n_correct, exe_time = match_SSD (gray_image1,gray_image2)
             result.text("{} Correct Matches.".format(n_correct))
             result.pyplot(SSD_figure)
+            result.text("Total time elapsed (s): " + exe_time )
 
         if select == "NCC" :
-            NCC_figure, n_correct = NCC (gray_image1,gray_image2)
+            NCC_figure, n_correct, exe_time = NCC (gray_image1,gray_image2)
             result.text("{} Correct Matches.".format(n_correct))
             result.pyplot(NCC_figure)
+            result.text("Total time elapsed (s): " + exe_time )
 
 
            
