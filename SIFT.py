@@ -4,7 +4,7 @@ from cv2 import resize, GaussianBlur, subtract, KeyPoint, INTER_LINEAR, INTER_NE
 from functools import cmp_to_key
 
 float_tolerance = 1e-7
-#------------------------------------------------------------ Call functions------------------------------------------------------------------------ #
+#--------------------------------Call functions------------------------------------------------------------------------ #
 
 
 def computeKeypointsAndDescriptors(image,num_octaves=4, sigma=1.6, S=3, image_border_width=5):
@@ -19,7 +19,7 @@ def computeKeypointsAndDescriptors(image,num_octaves=4, sigma=1.6, S=3, image_bo
     return keypoints, descriptors
 
 
-#------------------------------------------------------------ Scale Space Construction ---------------------------------------------------------- #
+#----------------------------------------Scale Space Construction ---------------------------------------------------------- #
 def generat_Scales(sigma,S):
     #Generate list of gaussian Scales at which to blur the input image.
     # S :the parameter determines the number of scales per octave
@@ -62,7 +62,7 @@ def generateDoGImages(gaussian_images):
         dog_images.append(dog_images_in_octave)
     return array(dog_images, dtype=object)
 
-#-------------------------------------------------------------- Scale Space Extrema Detection--------------------------------------------------------#
+#-------------------------------------Scale Space Extrema Detection--------------------------------------------------------#
 
 def findScaleSpaceExtrema(gaussian_images, dog_images, S, sigma, image_border_width, contrast_threshold=0.04):
     #Find pixel positions of all scale-space extrema in the octave
@@ -175,7 +175,7 @@ def computeHessianAtCenterPixel(pixel_array):
                   [dxy, dyy, dys],
                   [dxs, dys, dss]])
 
-#------------------------------------------------------------Orientation Assignment--------------------------------------------------------------#
+#-------------------------------------Orientation Assignment--------------------------------------------------------------#
 
 def computeKeypointsWithOrientations(keypoint, octave_index, gaussian_image, radius_factor=3, num_bins=36, peak_ratio=0.8, scale_factor=1.5):
     #Compute orientations for each keypoint
@@ -220,7 +220,7 @@ def computeKeypointsWithOrientations(keypoint, octave_index, gaussian_image, rad
     return keypoints_with_orientations
 
 
-#----------------------------------------------------------------------- Cleaning Up keypoints --------------------------------------------------- #
+#--------------------------------------Cleaning Up keypoints --------------------------------------------------- #
 
 
 def compareKeypoints(keypoint1, keypoint2):
@@ -259,7 +259,7 @@ def removeDuplicateKeypoints(keypoints):
     return unique_keypoints
 
 
-#------------------------------------------------------------------- Keypoint Scale Conversion----------------------------------------------------------- #
+#-------------------------------------Keypoint Scale Conversion----------------------------------------------------------- #
 
 
 def convertKeypointsToInputImageSize(keypoints):
@@ -273,7 +273,7 @@ def convertKeypointsToInputImageSize(keypoints):
     return converted_keypoints
 
 
-#--------------------------------------------------------------------------Keypoint Descriptor------------------------------------------------------------- #
+#--------------------------------------Keypoint Descriptor------------------------------------------------------------- #
 
 
 def unpackOctave(keypoint):
