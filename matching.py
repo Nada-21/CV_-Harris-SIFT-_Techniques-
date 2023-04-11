@@ -96,9 +96,9 @@ def match_SSD (I1,I2):
   # the second image should be at most rthrs=2 pixels away from the transformed
   # location
   n_correct = len(pdiff[pdiff<rthrs])
-  print("{} correct matches.".format(n_correct))
+  # print("{} correct matches.".format(n_correct))
 
-  return fig 
+  return fig, n_correct
 
 #....................................Normalized Cross Correlation...........................................................
 def NCC (I1,I2):
@@ -114,9 +114,19 @@ def NCC (I1,I2):
   patches1=np.zeros((patch_size, patch_size, npts1))
   patches2=np.zeros((patch_size, patch_size, npts2))
   distmat = np.zeros((npts1, npts2))
+  # The following part extracts the patches using bilinear interpolation
+  k=(patch_size-1)/2.
+  xv,yv=np.meshgrid(np.arange(-k,k+1),np.arange(-k, k+1))
+  for i in range(npts1):
+    patch = map_coordinates(I1, (yv + y1[i], xv + x1[i]))
+    patches1[:,:,i] = patch
+  for i in range(npts2):
+    patch = map_coordinates(I2, (yv + y2[i], xv + x2[i]))
+    patches2[:,:,i] = patch
+
   for i1 in range(npts1):
     for i2 in range(npts2):
-        distmat[i1,i2]=np.sum((patches1[:,:,i1]-patches2[:,:,i2])**2)
+      distmat[i1,i2]=np.sum((patches1[:,:,i1]-patches2[:,:,i2])**2)
 
   ss1 = np.amin(distmat, axis=1)
 
@@ -187,9 +197,9 @@ def NCC (I1,I2):
   # the second image should be at most rthrs=2 pixels away from the transformed
   # location
   n_correct = len(pdiff[pdiff<rthrs])
-  print("{} Correct Matches.".format(n_correct))
+  # print("{} Correct Matches.".format(n_correct))
 
-  return fig
+  return fig, n_correct
 
 
   
