@@ -66,11 +66,13 @@ with tab2:
         sized_img2 = cv2.resize(input_img2,(400,400))
         
         if select == "SSD" :
-            SSD_figure = match_SSD (gray_image1,gray_image2)
+            SSD_figure, n_correct = match_SSD (gray_image1,gray_image2)
+            result.text("{} Correct Matches.".format(n_correct))
             result.pyplot(SSD_figure)
 
         if select == "NCC" :
-            NCC_figure = NCC (gray_image1,gray_image2)
+            NCC_figure, n_correct = NCC (gray_image1,gray_image2)
+            result.text("{} Correct Matches.".format(n_correct))
             result.pyplot(NCC_figure)
 
 
