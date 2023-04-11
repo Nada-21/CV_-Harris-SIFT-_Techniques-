@@ -3,6 +3,7 @@ import cv2
 from harris import* 
 from matching import*
 from SIFT import*
+
 st.set_page_config(page_title=" Image Processing", page_icon="📸", layout="wide",initial_sidebar_state="collapsed")
 
 hide_st_style = """
@@ -21,14 +22,13 @@ side = st.sidebar
 uploaded_img =side.file_uploader("Upload Image",type={"png", "jpg", "jfif" , "jpeg"})
 threshold = side.number_input('Harris Threshold',min_value=10,max_value=3000000, value=10000,step=10)
 k = side.number_input('Harris k value',min_value=.00001,max_value=1.0, value=.04,step=.00001)
-side.text('SIFT parameters')
 window_size = side.number_input('Harris window size',min_value=1,max_value=15, value=5,step=1)
+side.text('SIFT parameters')
 Sigma=side.number_input('Sigma of Gaussian filter',value=1.6)
 num_of_octaves=side.number_input('Number of octaves',value=4)
 
 tab1, tab2  = st.tabs(["Harris & SIFT", "Matching"])
 with tab1:
-     
     col1,col2 = st.columns(2)
     select=col2.selectbox("Select",('','Harris','SIFT'))
     if uploaded_img is not None:
@@ -49,26 +49,29 @@ with tab1:
             col2.image(output_image)    
 
 with tab2:
-    uploadimg1, uploadimg2, col3 = st.columns(3)
-    select = col3.selectbox("Select",('SSD','NCC'))
-    img1 = uploadimg1.file_uploader("upload Image", type = {"png","jpg","jfif", "jpeg"}, key="tab12")
+    uploadimg,result = st.columns(2)
+    select = result.selectbox("Select",('SSD','NCC'))
+    img1 = uploadimg.file_uploader("upload Image1", type = {"png","jpg","jfif", "jpeg"})
     if img1 is not None:
         file_path = 'Images/'  +str(img1.name)
         input_img1 = cv2.imread(file_path)
         gray_image1 = cv2.cvtColor(input_img1, cv2.COLOR_BGR2GRAY)
         sized_img1 = cv2.resize(input_img1,(400,400))
-        # uploadimg1.image(sized_img1)
-    img2 = uploadimg2.file_uploader("upload Image", type = {"png","jpg","jfif", "jpeg"}, key="tab22")
+    
+    img2 = uploadimg.file_uploader("upload Image2", type = {"png","jpg","jfif", "jpeg"})
     if img2 is not None:
         file_path = 'Images/'  +str(img2.name)
         input_img2 = cv2.imread(file_path)
         gray_image2 = cv2.cvtColor(input_img2, cv2.COLOR_BGR2GRAY)
         sized_img2 = cv2.resize(input_img2,(400,400))
-        # uploadimg2.image(sized_img2) 
         
         if select == "SSD" :
-            montage = match_SSD (gray_image1,gray_image2)
-            col3.image(montage)
+            SSD_figure = match_SSD (gray_image1,gray_image2)
+            result.pyplot(SSD_figure)
+
+        if select == "NCC" :
+            NCC_figure = NCC (gray_image1,gray_image2)
+            result.pyplot(NCC_figure)
 
 
            
