@@ -47,6 +47,7 @@ Search over multiple scales and image locations
 
 
 2.	Scale Space Extrema Detection
+   
 ●	Detect maxima and minima of differences of Gaussian in scale space.
 ●	Each point is compared to its 8 neighbours in the current image and 9 neighbours each in the
 scales above and below.
@@ -56,14 +57,13 @@ scales above and below.
 ![6](https://github.com/GhofranMohamed/CV_task3/assets/93389441/28741de3-5156-4448-83b8-3a70d8d5a904)
 
 
-4.	Orientation Assignment
+3.	Orientation Assignment
 ●	Create histogram of local gradient directions at selected scale.
-●	Assign canonical orientation at peak of smoothed histogram
-●	Each key specifies stable 2D coordinates
-●	Histogram of gradient orientation bin-counts
-are weighted by gradient magnitudes and a Gaussian Weighting function. Usually,36 bins are chosen for the orientation.
+●	Assign canonical orientation at peak of smoothed histogram.
+●	Each key specifies stable 2D coordinates.
+●	Histogram of gradient orientation bin-counts are weighted by gradient magnitudes and a Gaussian Weighting function. Usually,36 bins are chosen for the orientation.
 
-𝑚(𝑥, 𝑦) = √(𝐿(𝑥 + 1, 𝑦) − 𝐿(𝑥 − 1, 𝑦))2 + (𝐿(𝑥, 𝑦 + 1) − 𝐿(𝑥, 𝑦 − 1))2
+𝑚(𝑥, 𝑦) = √(𝐿(𝑥 + 1, 𝑦) − 𝐿(𝑥 − 1, 𝑦))2 + (𝐿(𝑥, 𝑦 + 1) − 𝐿(𝑥, 𝑦 − 1))2 .
 𝜃(𝑥, 𝑦) = tan−1((𝐿(𝑥, 𝑦 + 1) − 𝐿(𝑥, 𝑦 − 1))⁄(𝐿(𝑥 + 1, 𝑦) − 𝐿(𝑥 − 1, 𝑦)))
 
 
