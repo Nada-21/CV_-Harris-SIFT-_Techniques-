@@ -16,7 +16,8 @@ o	The UI contains two main tabs Features Generation, Matching
 ## Harris:
 Harris Corner Detector is a corner detection operator that is commonly used in computer vision algorithms to extract corners and infer features of an image. Corners are the important features in the image, and they are generally termed as interest points which are invariant to translation, rotation, and illumination. Harris, and Stephens developed the Harris Corner Detector [1], a mathematical approach to detect corners and edges in images. They picked the statements of Moravec and gave it a mathematical signification, Equation 1.
 
-![1](https://github.com/GhofranMohamed/CV_task3/assets/93389441/ae51fb6f-3a9e-4549-ad92-6a7718592bf0)
+![1](https://github.com/GhofranMohamed/CV_task3/blob/main/images/1.jpg)
+https://github.com/GhofranMohamed/CV_task3/blob/main/images/1.jpg
 
 After applying Taylor expansion it is possible to obtain the following approximation of Equation2.
 ![2](https://github.com/GhofranMohamed/CV_task3/assets/93389441/c118868e-5e93-4421-b12a-3373b7793968)
