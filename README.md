@@ -39,10 +39,6 @@ Computation time equals 0.11477828025817871 seconds on average
 
 ## SIFT > (Scale Invariant Feature Transform)
 ### Algorithm
-1.	Scale space construction
-2.	Scale space extrema detection
-3.	Orientation Assignment
-4.	Key point descriptor
    
 1.	Scale Space Construction
 Search over multiple scales and image locations
