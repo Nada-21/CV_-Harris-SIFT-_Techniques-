@@ -43,9 +43,12 @@ Computation time equals 0.11477828025817871 seconds on average
 2.	Scale space extrema detection
 3.	Orientation Assignment
 4.	Key point descriptor
+   
 1.	Scale Space Construction
 Search over multiple scales and image locations
+
 ![5](https://github.com/GhofranMohamed/CV_task3/assets/93389441/31289d80-ff12-4c2f-8e2b-588683091ffa)
+
 
 2.	Scale Space Extrema Detection
 ●	Detect maxima and minima of differences of Gaussian in scale space.
@@ -53,9 +56,11 @@ Search over multiple scales and image locations
 scales above and below.
 ●	Reject flats
 ●	The Hessian matrix was used to eliminate edge responses.
+
 ![6](https://github.com/GhofranMohamed/CV_task3/assets/93389441/28741de3-5156-4448-83b8-3a70d8d5a904)
 
-3.	Orientation Assignment
+
+4.	Orientation Assignment
 ●	Create histogram of local gradient directions at selected scale.
 ●	Assign canonical orientation at peak of smoothed histogram
 ●	Each key specifies stable 2D coordinates
@@ -64,11 +69,15 @@ are weighted by gradient magnitudes and a Gaussian Weighting function. Usually,3
 
 𝑚(𝑥, 𝑦) = √(𝐿(𝑥 + 1, 𝑦) − 𝐿(𝑥 − 1, 𝑦))2 + (𝐿(𝑥, 𝑦 + 1) − 𝐿(𝑥, 𝑦 − 1))2
 𝜃(𝑥, 𝑦) = tan−1((𝐿(𝑥, 𝑦 + 1) − 𝐿(𝑥, 𝑦 − 1))⁄(𝐿(𝑥 + 1, 𝑦) − 𝐿(𝑥 − 1, 𝑦)))
+
+
 ![7](https://github.com/GhofranMohamed/CV_task3/assets/93389441/607c0f25-bc30-4835-b81e-d45b668fac58)
 
 4.	Key point descriptor
 Use local image gradients at selected scale and rotation to describe each key point region
+
 ![8](https://github.com/GhofranMohamed/CV_task3/assets/93389441/c085056e-47c3-423c-9135-cec2962b6e30)
+
 
 ### Results 
 Computation time equals 66.9212273999999 in seconds.
