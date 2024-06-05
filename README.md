@@ -17,13 +17,13 @@ o	The UI contains two main tabs Features Generation, Matching
 Harris Corner Detector is a corner detection operator that is commonly used in computer vision algorithms to extract corners and infer features of an image. Corners are the important features in the image, and they are generally termed as interest points which are invariant to translation, rotation, and illumination. Harris, and Stephens developed the Harris Corner Detector [1], a mathematical approach to detect corners and edges in images. They picked the statements of Moravec and gave it a mathematical signification, Equation 1.
 
 ![1](https://github.com/GhofranMohamed/CV_task3/blob/main/images/1.jpg)
-https://github.com/GhofranMohamed/CV_task3/blob/main/images/1.jpg
+
 
 After applying Taylor expansion it is possible to obtain the following approximation of Equation2.
-![2](https://github.com/GhofranMohamed/CV_task3/assets/93389441/c118868e-5e93-4421-b12a-3373b7793968)
+![2](https://github.com/GhofranMohamed/CV_task3/blob/main/images/2.jpg)
 
 The Ix and Iy present in Equation 2 are the x and y image derivatives. To conclude, the response of the corner detector is obtained with Equation 3. Depending on the value obtained by this response, is possible to determine if a region contains a flat region, an edge, or a corner.
-![3](https://github.com/GhofranMohamed/CV_task3/assets/93389441/a6ff31b2-8dc4-478c-af7e-44fc069a2b0d)
+![3](https://github.com/GhofranMohamed/CV_task3/blob/main/images/3.jpg)
 
 ### Algorithm
 in this algorithm we change the image type to float then we do the next steps
@@ -36,7 +36,7 @@ in this algorithm we change the image type to float then we do the next steps
    
 ### Results 
 Computation time equals 0.11477828025817871 seconds on average
-![4](https://github.com/GhofranMohamed/CV_task3/assets/93389441/cc5c6a52-4c33-4714-8739-a2bad534b1d8)
+![4](https://github.com/GhofranMohamed/CV_task3/blob/main/images/4.png)
 
 ## SIFT > (Scale Invariant Feature Transform)
 ### Algorithm
@@ -44,7 +44,7 @@ Computation time equals 0.11477828025817871 seconds on average
 1.	Scale Space Construction
 Search over multiple scales and image locations
 
-![5](https://github.com/GhofranMohamed/CV_task3/assets/93389441/31289d80-ff12-4c2f-8e2b-588683091ffa)
+![5](https://github.com/GhofranMohamed/CV_task3/blob/main/images/5.jpg)
 
 
 2.	Scale Space Extrema Detection
@@ -55,7 +55,7 @@ scales above and below.
 ●	Reject flats
 ●	The Hessian matrix was used to eliminate edge responses.
 
-![6](https://github.com/GhofranMohamed/CV_task3/assets/93389441/28741de3-5156-4448-83b8-3a70d8d5a904)
+![6](https://github.com/GhofranMohamed/CV_task3/blob/main/images/6.jpg)
 
 
 3.	Orientation Assignment
@@ -68,24 +68,24 @@ scales above and below.
 𝜃(𝑥, 𝑦) = tan−1((𝐿(𝑥, 𝑦 + 1) − 𝐿(𝑥, 𝑦 − 1))⁄(𝐿(𝑥 + 1, 𝑦) − 𝐿(𝑥 − 1, 𝑦)))
 
 
-![7](https://github.com/GhofranMohamed/CV_task3/assets/93389441/607c0f25-bc30-4835-b81e-d45b668fac58)
+![7](https://github.com/GhofranMohamed/CV_task3/blob/main/images/7.jpg)
 
 4.	Key point descriptor
 Use local image gradients at selected scale and rotation to describe each key point region
 
-![8](https://github.com/GhofranMohamed/CV_task3/assets/93389441/c085056e-47c3-423c-9135-cec2962b6e30)
+![8](https://github.com/GhofranMohamed/CV_task3/blob/main/images/8.png)
 
 
 ### Results 
 Computation time equals 66.9212273999999 in seconds.
-![9](https://github.com/GhofranMohamed/CV_task3/assets/93389441/0f03d89a-4e3e-48ad-997e-c6a18a49f309)
+![9](https://github.com/GhofranMohamed/CV_task3/blob/main/images/9.png)
 
 
 # Tab2:
 Matching Harris corner points
 ## SSD
 The aim is to first detect Harris corners from two images of the same scene. Then, image patches of size 15x15 pixels around each detected corner point is extracted following a matching step where mutually nearest neighbors are found using the sum of squared differences (SSD) similarity measure.
-![10](https://github.com/GhofranMohamed/CV_task3/assets/93389441/9be9fa5b-69fa-41d2-ab5c-8135e13cf0ea)
+![10](https://github.com/GhofranMohamed/CV_task3/blob/main/images/10.jpg)
 
 ### Algorithm 
 •	Harris corner extraction
@@ -98,14 +98,14 @@ The aim is to first detect Harris corners from two images of the same scene. The
 •	Finally, since we have estimated the planar projective transformation, we can check that how many of the nearest neighbor matches actually are correct correspondences
 
 ### Results 
-![11](https://github.com/GhofranMohamed/CV_task3/assets/93389441/77aefd54-e9d8-4bf9-97c9-16e76acfa2ef)
+![11](https://github.com/GhofranMohamed/CV_task3/blob/main/images/11.jpg)
 
 ## NCC 
 from SSD to NCC:
 o	You need to determine the mutually nearest neighbors by finding pairs for which NCC is maximized (i.e. not minimized like SSD).
 o	Also, you need to sort the matches in descending order in terms of NCC
 o	in order to find the best matches (i.e. not ascending order as with SSD).
-![12](https://github.com/GhofranMohamed/CV_task3/assets/93389441/11123887-c6e8-415c-ae71-b99b9a4d5c71)
+![12](https://github.com/GhofranMohamed/CV_task3/blob/main/images/12.jpg)
 
 ### Algorithm
 •	Harris corner extraction
@@ -119,7 +119,7 @@ o	in order to find the best matches (i.e. not ascending order as with SSD).
 •	Finally, since we have estimated the planar projective transformation, we can check that how many of the nearest neighbor matches actually are correct correspondences
 
 ### Results 
-![13](https://github.com/GhofranMohamed/CV_task3/assets/93389441/10b7ae1e-84ec-44f4-aa57-add66950673c)
+![13](https://github.com/GhofranMohamed/CV_task3/blob/main/images/13.jpg)
 
 ### Comments 
 1)	Using NCC, 81 correct correspondences were found compared to the 24 found with SSD.
@@ -136,7 +136,7 @@ o	in order to find the best matches (i.e. not ascending order as with SSD).
 •	Estimate the geometric transformation between images
 
 ### Results 
-![14](https://github.com/GhofranMohamed/CV_task3/assets/93389441/b0f8efc1-00b1-4cee-881c-f7e920921d7e)
+![14](https://github.com/GhofranMohamed/CV_task3/blob/main/images/14.jpg)
 
 
 
